@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 
-namespace ToDoList
+namespace Todo.Objects
 {
   public class Task
   {
     private string _description;
     private int _id;
-    private static List<Task> _instances = List<Task> {};
+    private static List<Task> _instances = new List<Task> {};
 
-    public Task(string descrition)
+    public Task(string description)
     {
       _description = description;
       _instances.Add(this);
