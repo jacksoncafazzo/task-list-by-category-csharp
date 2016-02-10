@@ -1,5 +1,3 @@
-
-//directives
 using System.IO;
 using Microsoft.AspNet.Builder;
 using Nancy.Owin;
