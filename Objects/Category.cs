@@ -7,7 +7,7 @@ namespace Categories.Objects
   {
     private string _name;
     private int _id;
-    private static List<Task> _tasks = new List<Task> {};
+    private List<Task> _tasks = new List<Task> {};
     private static List<Category> _instances = new List<Category> {};
 
     public Category(string categoryName)
