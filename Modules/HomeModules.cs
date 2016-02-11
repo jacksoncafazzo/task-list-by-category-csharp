@@ -1,6 +1,7 @@
 using Nancy;
 using Tasks.Objects;
 using Categories.Objects;
+using System;
 using System.Collections.Generic;
 
 namespace ToDoList
@@ -40,6 +41,7 @@ namespace ToDoList
         model.Add("tasks", allTasks);
         return View["category_tasks_form.cshtml", model];
       };
+
       Post["/tasks"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Category selectedCategory = Category.Find(Request.Form["category-id"]);
@@ -51,14 +53,26 @@ namespace ToDoList
         model.Add("category", selectedCategory);
         return View["category.cshtml", model];
       };
-      Get["/tasks_delete"] = _ => {
-        Task.ClearAll();
+      // Get["/tasks_delete"] = _ => {
+      //   Category.ClearAll();
+      //   return View["tasks_deleted.cshtml"];
+      // };
+      Get["/categories_delete"] = _ => {
+        Category.ClearAll();
+        return View["categories_deleted.cshtml"];
+      };
+      Get["/delete/categories/{id}/tasks/{taskId}"] = parameters => {
+        Category selectedCategory = Category.Find(parameters.id);
+        List<Task> allTasks = Task.GetAll();
+        Task task = allTasks[parameters.taskId-1];
+        selectedCategory.RemoveTask(task);
+        return View["/index.cshtml", task];
+      };
+      Get["delete/categories/{id}"] = parameters => {
+        Category selectedCategory = Category.Find(parameters.id);
+        selectedCategory.ClearAllTasks();
         return View["tasks_deleted.cshtml"];
       };
-      // Get["/tasks/{id}"] = parameters => {
-      //   Task task = Task.Find(parameters.id);
-      //   return View["/task.cshtml", task];
-      // };
     }
   }
 }

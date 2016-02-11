@@ -7,7 +7,7 @@ namespace Categories.Objects
   {
     private string _name;
     private int _id;
-    private List<Task> _tasks = new List<Task> {};
+    private List<Task> _tasks;
     private static List<Category> _instances = new List<Category> {};
 
     public Category(string categoryName)
@@ -41,6 +41,15 @@ namespace Categories.Objects
     public static void ClearAll()
     {
       _instances.Clear();
+    }
+    public void ClearAllTasks()
+    {
+      _tasks.Clear();
+    }
+
+    public void RemoveTask(Task task)
+    {
+      _tasks.Remove(task);
     }
     public static Category Find(int searchId)
     {

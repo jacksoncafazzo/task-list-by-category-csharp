@@ -2,7 +2,7 @@
 <ul>
   @foreach (var task in Model)
   {
-    <li><a href="/tasks/@task.GetId()">@task.GetDescription()</a></li>
+    <li><a href='/delete/@Model["category"].GetId()/tasks/@Model["tasks"].GetId()'>@task.GetDescription()</a></li>
   }
 </ul>
 <a href="/tasks/new">Add a new task</a>
