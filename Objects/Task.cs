@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Todo.Objects
+namespace Tasks.Objects
 {
   public class Task
   {
